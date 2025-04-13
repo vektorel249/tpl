@@ -9,7 +9,7 @@ internal class Program
     {
         Task.Run(async () =>
         {
-            using var channel = await CreateChannel();
+            (var c, var o) = await CreateChannel();
             while (true)
             {
                 Console.Write("Mesajınız....: ");
@@ -18,9 +18,12 @@ internal class Program
                 {
                     break;
                 }
-                await PublishMessage(channel, message);
+                await PublishMessage(c, message);
                 Console.WriteLine($"------ { DateTime.Now } Gönderildi ------");
             }
+
+            c.Dispose();
+            o.Dispose();
             
         }).Wait();
     }
@@ -32,7 +35,7 @@ internal class Program
                                         body: Encoding.UTF8.GetBytes(message));
     }
 
-    private static async Task<IChannel> CreateChannel()
+    private static async Task<(IChannel, IConnection)> CreateChannel()
     {
         var factory = new ConnectionFactory();
         factory.HostName = "localhost";
@@ -48,6 +51,15 @@ internal class Program
 
         var channel = await connection.CreateChannelAsync();
         await channel.QueueDeclareAsync("console.messages", true, false, false);
-        return channel;
+        return (channel, connection);
     }
+
+    #region Tuple yerine kullanılabilecek alternatifler
+    record RabbitInfoRecord(IChannel Channel, IConnection Connection);
+    class RabbitInfoClass
+    {
+        public IConnection Connection { get; set; }
+        public IChannel Channel { get; set; }
+    } 
+    #endregion
 }
