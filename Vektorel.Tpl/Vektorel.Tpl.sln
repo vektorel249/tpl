@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vektorel.Tpl.ConsoleApp", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vektorel.Tpl.FormApp", "Vektorel.Tpl.FormApp\Vektorel.Tpl.FormApp.csproj", "{009827E1-D160-4689-BB53-8EF34A94E0CE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vektorel.RMQ.FormApp", "Vektorel.RMQ.FormApp\Vektorel.RMQ.FormApp.csproj", "{9B530A46-B946-4B19-AF08-61AED34684B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vektorel.RMQ.ConsoleApp", "Vektorel.RMQ.ConsoleApp\Vektorel.RMQ.ConsoleApp.csproj", "{13CC78C6-8BC4-4064-82FF-F0E224849436}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{009827E1-D160-4689-BB53-8EF34A94E0CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{009827E1-D160-4689-BB53-8EF34A94E0CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{009827E1-D160-4689-BB53-8EF34A94E0CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B530A46-B946-4B19-AF08-61AED34684B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B530A46-B946-4B19-AF08-61AED34684B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B530A46-B946-4B19-AF08-61AED34684B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B530A46-B946-4B19-AF08-61AED34684B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13CC78C6-8BC4-4064-82FF-F0E224849436}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13CC78C6-8BC4-4064-82FF-F0E224849436}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13CC78C6-8BC4-4064-82FF-F0E224849436}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13CC78C6-8BC4-4064-82FF-F0E224849436}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
