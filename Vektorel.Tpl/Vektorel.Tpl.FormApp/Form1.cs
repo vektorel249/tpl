@@ -27,10 +27,10 @@ namespace Vektorel.Tpl.FormApp
             {
                 //sadece cancel iþleminden kaynaklý exceptionlarý görmezden gel (yut)
             }
-            catch(NullReferenceException) 
+            catch (NullReferenceException)
             {
             }
-            catch(IndexOutOfRangeException)
+            catch (IndexOutOfRangeException)
             {
             }
             btnWait.Enabled = true;
@@ -43,6 +43,35 @@ namespace Vektorel.Tpl.FormApp
                 return;
             }
             cts.Cancel();
+        }
+
+        private void btnFill_Click(object sender, EventArgs e)
+        {
+            Task.Run(async () => { 
+                var sections = new List<List<object>>();
+                for (var i = 0; i < 100; i++)
+                {
+                    sections.Add(new List<object>());
+                }
+                var section = 0;
+
+                for (var i = 0; i < 100000; i++)
+                {
+                    sections[section].Add(i);
+                    if (i % 1000 == 0)
+                    {
+                        //Ana thread (UI Thread) iþi gönder
+                        lstNumbers.Invoke(() =>
+                        {
+                            var numbers = sections[section].ToArray();
+                            //Bu kod UI thread içinde çalýþýr
+                            lstNumbers.Items.AddRange(numbers);
+                        });
+                        section++;
+                    }
+                    await Task.Yield();
+                }
+            });
         }
     }
 }

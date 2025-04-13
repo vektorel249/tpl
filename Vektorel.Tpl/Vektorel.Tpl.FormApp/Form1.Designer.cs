@@ -66,6 +66,7 @@
             btnFill.TabIndex = 2;
             btnFill.Text = "Doldur";
             btnFill.UseVisualStyleBackColor = true;
+            btnFill.Click += btnFill_Click;
             // 
             // txtNum1
             // 
