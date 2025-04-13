@@ -28,12 +28,47 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "Form1";
+            lstMessages = new ListBox();
+            lblLstMessage = new Label();
+            SuspendLayout();
+            // 
+            // lstMessages
+            // 
+            lstMessages.FormattingEnabled = true;
+            lstMessages.ItemHeight = 15;
+            lstMessages.Location = new Point(12, 27);
+            lstMessages.Name = "lstMessages";
+            lstMessages.Size = new Size(462, 349);
+            lstMessages.TabIndex = 0;
+            // 
+            // lblLstMessage
+            // 
+            lblLstMessage.AutoSize = true;
+            lblLstMessage.Location = new Point(12, 9);
+            lblLstMessage.Name = "lblLstMessage";
+            lblLstMessage.Size = new Size(101, 15);
+            lblLstMessage.TabIndex = 1;
+            lblLstMessage.Text = "Son Mesaj Tarihi : ";
+            // 
+            // Form1
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(486, 384);
+            Controls.Add(lblLstMessage);
+            Controls.Add(lstMessages);
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "Form1";
+            Text = "Gelen Kutusu";
+            Load += Form1_Load;
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+
+        private ListBox lstMessages;
+        private Label lblLstMessage;
     }
 }

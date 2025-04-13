@@ -1,4 +1,5 @@
 ﻿using RabbitMQ.Client;
+using StackExchange.Redis;
 using System.Text;
 
 namespace Vektorel.RMQ.ConsoleApp;
@@ -9,6 +10,9 @@ internal class Program
     {
         Task.Run(async () =>
         {
+            var redis = ConnectionMultiplexer.Connect("localhost:12003"); // Default Redis portu 6379'dur
+            var redisDatabase = redis.GetDatabase();
+
             (var c, var o) = await CreateChannel();
             while (true)
             {
@@ -18,7 +22,7 @@ internal class Program
                 {
                     break;
                 }
-                await PublishMessage(c, message);
+                await PublishMessage(c, message, redisDatabase);
                 Console.WriteLine($"------ { DateTime.Now } Gönderildi ------");
             }
 
@@ -28,11 +32,12 @@ internal class Program
         }).Wait();
     }
 
-    private static async Task PublishMessage(IChannel channel, string message)
+    private static async Task PublishMessage(IChannel channel, string message, IDatabase redisDatabase)
     {
         await channel.BasicPublishAsync(exchange: "",
                                         routingKey: "console.messages",
                                         body: Encoding.UTF8.GetBytes(message));
+        redisDatabase.StringSet("last_message", DateTime.Now.ToString());
     }
 
     private static async Task<(IChannel, IConnection)> CreateChannel()
